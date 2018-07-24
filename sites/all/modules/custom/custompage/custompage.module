@@ -1,0 +1,23 @@
+<?php
+
+/**
+* Implement hook_menu
+**/
+
+function custompage_menu(){
+  $items['custompage'] = array(
+    'title' => 'Custom Page',
+    'page callback' => 'custompage',
+    'access arguments' => array(
+      'access content'
+    ),
+
+  );
+
+  return $items;
+}
+
+
+function custompage(){
+  return 'Hello World';
+}
