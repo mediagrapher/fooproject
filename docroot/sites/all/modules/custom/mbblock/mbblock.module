@@ -1,0 +1,73 @@
+<?php
+
+/**
+* Implements hook_permission()
+**/
+
+
+function mbblock_permission() {
+  return array(
+    'access mbblock' => array(
+      'title' => t('Access mbblock'),
+      'description' => t('Access mbblock page.'),
+    ),
+  );
+}
+
+/**
+* Implements hook_menu()
+**/
+
+function mbblock_menu() {
+  $items['mbblockpage'] = array(
+    'title' => 'mbblock Special Page',
+    'type' => MENU_NORMAL_ITEM,
+    'page callback' => 'mbblock_page',
+    'access arguments' => array(
+      'access content'
+    ),
+  );
+  return $items;
+}
+
+/**
+* callback function
+**/
+
+function mbblock_page() {
+  return "<h1>test</h1>";
+}
+
+/**
+* Implements hook_block_info()
+**/
+
+function mbblock_block_info() {
+
+  // This example comes from node.module.
+  $blocks['mbblock'] = array(
+    'info' => t('mbblock'),
+  );
+  return $blocks;
+}
+
+/**
+* Implements hook_block_view()
+**/
+
+function mbblock_block_view($delta = '') {
+
+  // This example is adapted from node.module.
+  $block = array();
+  switch ($delta) {
+    case 'mbblock':
+      $block['subject'] = t('mbblock');
+      $block['content'] = array(
+        '#theme' => 'feed_icon',
+        '#url' => 'rss.xml',
+        '#title' => t('Syndicate'),
+      );
+      break;
+  }
+  return $block;
+}
