@@ -1,0 +1,14 @@
+<?php
+
+/**
+* Implements hook_permission().
+**/
+
+function form_example_permission() {
+  return array(
+    'submit form_example' => array(
+      'title' => t('Submit form_example'),
+      'description' => t('Submit the form_exxample form.'),
+    ),
+  );
+}
